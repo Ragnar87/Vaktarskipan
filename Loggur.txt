@@ -1,0 +1,4 @@
+
+Bardur 19/09/2014 22:20
+Eg havi gjørt ein create controller, har iğ ein er [HTTPpost] iğ setur data
+inn í databasan.

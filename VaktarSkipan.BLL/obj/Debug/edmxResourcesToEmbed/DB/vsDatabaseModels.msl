@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VaktarSkipanDataModelStoreContainer" CdmEntityContainer="vsdbEntities">
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="VaktarSkipanDataModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vaktir">
+      <EntityTypeMapping TypeName="VaktarSkipanDataModel.Vaktir">
+        <MappingFragment StoreEntitySet="Vaktir">
+          <ScalarProperty Name="VaktID" ColumnName="VaktID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="End" ColumnName="End" />
+          <ScalarProperty Name="isFree" ColumnName="isFree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

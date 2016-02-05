@@ -1,0 +1,86 @@
+﻿@model VaktarSkipan.BLL.DB.Person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>Details: @Model.fullName()</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+               <b>Name</b>
+            </td>
+            <td>
+                @Html.LabelFor(x => x.Telephone)
+            </td>
+            <td>
+                @Html.LabelFor(x => x.PersonID)
+            </td>
+            <td>
+                @Html.LabelFor( x=> x.Password)
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+           <td> 
+                @Model.fullName() 
+           </td>
+            <td> 
+                @Html.DisplayFor(x => x.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.PersonID)
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.Password)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div>Shifts: @Model.Vaktir.Count</div>
+@if(Model.Vaktir.Count > 0)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>
+                    Type
+                </td>
+                <td>
+                    Date
+                </td>
+                <td>
+                    Start
+                </td>
+                <td>
+                    End
+                </td>
+            </tr>
+        </thead>
+
+        <tbody>
+           
+          
+                @foreach(var s in Model.Vaktir)
+                 {
+                    <tr>
+                        <td>@s.Type</td>
+                        <td>@String.Format("{0:MM/dd/yyyy}", s.Date)</td>
+                        <td>@s.Start</td>
+                        <td>@s.End</td>
+                    </tr>
+                 }    
+                  
+        </tbody>
+
+
+    </table>
+}
+
+@Html.ActionLink("Back","People")

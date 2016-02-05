@@ -1,0 +1,39 @@
+CREATE TABLE [dbo].[Vaktir] (
+    [VaktID]   INT          IDENTITY (1, 1) NOT NULL,
+    [PersonID] VARCHAR (50) NOT NULL,
+    [Type]     VARCHAR (50) NOT NULL,
+    [Date]     DATE         NOT NULL,
+    [Start]    TIME (7)     NOT NULL,
+    [End]      TIME (7)     NOT NULL,
+    [isFree]   BIT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([VaktID] ASC),
+    FOREIGN KEY ([PersonID]) REFERENCES [dbo].[Person] ([PersonID])
+);
+
+// class 
+
+  public partial class Vaktir
+    {
+        public int VaktID { get; set; }
+        public string PersonID { get; set; }
+
+        [Required(ErrorMessage = "Please specify a job type")]
+        public string Type { get; set; }
+
+        [Required(ErrorMessage = "Please input date")]
+        [DateValidator(ErrorMessage = "Date should be in the future")]
+        [DataType(DataType.Date)]
+        public System.DateTime Date { get; set; }
+
+        [Required(ErrorMessage = "Please input start time")]
+        [RegularExpression("([0-9]+):([0-5]?[0-9]):([0-5]?[0-9])", ErrorMessage = "Start time should be HH:MM")]
+        public System.TimeSpan Start { get; set; }
+
+        [Required(ErrorMessage = "Please input end time")]
+        [RegularExpression("([0-9]+):([0-5]?[0-9]):([0-5]?[0-9])", ErrorMessage = "Emd time should be HH:MM")]
+        public System.TimeSpan End { get; set; }
+
+        public bool isFree { get; set; }
+    
+        public virtual Person Person { get; set; }
+    }

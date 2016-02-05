@@ -1,0 +1,67 @@
+﻿@model VaktarSkipan.BLL.DB.Person
+@{
+    ViewBag.Title = "Edit Person";
+}
+
+@Html.ValidationSummary(true)
+<p>@Html.ValidationMessageFor(x => x.FirstName)</p>
+<p>@Html.ValidationMessageFor(x => x.LastName)</p>
+<p>@Html.ValidationMessageFor(x => x.PersonID)</p>
+<p>@Html.ValidationMessageFor(x => x.Telephone)</p>
+
+@using (Html.BeginForm())
+{
+
+    <h3>Edit Person: @Model.fullName()</h3>
+
+    <table class="form-group">
+        <tbody>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.FirstName)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.FirstName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.LastName)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.LastName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.PersonID)
+                </td>
+                <td>
+                    @Html.HiddenFor(x => x.PersonID)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Telephone)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.Telephone)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Password)
+                </td>
+                <td>
+                    @Html.EditorFor(x => x.Password)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+}
+
+@Html.ActionLink("Cancel", "People")

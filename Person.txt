@@ -1,0 +1,50 @@
+CREATE TABLE [dbo].[Person] (
+    [PersonID]  VARCHAR (50) NOT NULL,
+    [FirstName] VARCHAR (50) NOT NULL,
+    [LastName]  VARCHAR (50) NOT NULL,
+    [Telephone] NCHAR (10)   NOT NULL,
+    PRIMARY KEY CLUSTERED ([PersonID] ASC)
+);
+
+// class
+
+
+using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    
+    public partial class Person
+    {
+        public Person()
+        {
+            this.Vaktir = new List<Vaktir>();
+        }
+
+        [Display(Name = "Person ID")]
+        [Required(ErrorMessage = "Please input a Person id")]
+        [RegularExpression("^[0-9]{6}(-)[0-9]{3}$", ErrorMessage = "Person id should be DDMMYY-###")]
+        public string PersonID { get; set; }
+
+        [Display(Name = "First name")]
+        [Required(ErrorMessage = "Please input a first name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last name")]
+        [Required(ErrorMessage = "Please input a last name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Telephone")]
+        [Required(ErrorMessage = "Please input a telephone number")]
+        [RegularExpression("^[0-9]{6}$", ErrorMessage = "Phone number should be 6 digits")]
+        public string Telephone { get; set; }
+
+        [Required(ErrorMessage= "Please enter a password")]
+        public string Password { get; set; }
+
+        public string fullName()
+        {
+            return FirstName + " " + LastName;
+        }
+    
+        public virtual ICollection<Vaktir> Vaktir { get; set; }
+    }

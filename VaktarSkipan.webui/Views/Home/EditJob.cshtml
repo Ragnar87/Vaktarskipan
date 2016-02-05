@@ -1,0 +1,85 @@
+﻿@model VaktarSkipan.BLL.Entities.PeopleJobvm
+
+@{
+    ViewBag.Title = "EditJob";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Starvsfólk", "People", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Vaktir", "Jobs", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Leysar Vaktir", "FreeVakt", "Home", new { area = "" }, new { @class = "navbar-brand  ", })
+            @Html.ActionLink("Til Brúkarasíðuna", "UserMain", "User", new { area = "" }, new { @class = "navbar-brand  ", })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+</div>
+
+<h2>Edit job</h2>
+@Html.ValidationSummary(true)
+<p>@Html.ValidationMessageFor(x => x.job.Type)</p>
+<p>@Html.ValidationMessageFor(x => x.job.Date)</p>
+<p>@Html.ValidationMessageFor(x => x.job.Start)</p>
+<p>@Html.ValidationMessageFor(x => x.job.End)</p>
+@using (Html.BeginForm())
+{
+    <table class="form-group">
+        <tbody>
+            <tr>
+                <td>
+                    @Html.LabelFor(p => p.job.Type)
+                </td>
+                <td>
+                    @Html.EditorFor(p => p.job.Type)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(p => p.job.Date)
+                </td>
+                <td>
+                    @Html.EditorFor(p => p.job.Date)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(p => p.job.Start)
+                </td>
+                <td>
+                    @Html.EditorFor(p => p.job.Start)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(p => p.job.End)
+                </td>
+                <td>
+                    @Html.EditorFor(p => p.job.End)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Owner</b>
+                </td>
+                <td>
+                    @Html.DropDownListFor(p => p.job.PersonID, Model.PersonList())
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-default" />
+    </div>
+}
+
+@Html.ActionLink("Cancel", "Jobs")

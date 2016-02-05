@@ -1,0 +1,86 @@
+﻿@model VaktarSkipan.BLL.DB.Person
+@{
+    ViewBag.Title = "Create Person";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Starvsfólk", "People", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Vaktir", "Jobs", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Leysar Vaktir", "FreeVakt", "Home", new { area = "" }, new { @class = "navbar-brand  ", })
+            @Html.ActionLink("Til Brúkarasíðuna", "UserMain", "User", new { area = "" }, new { @class = "navbar-brand  ", })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+</div>
+
+@using(Html.BeginForm())
+{
+    
+<h3>Create Person</h3>
+ @Html.ValidationSummary(true)
+ <p>@Html.ValidationMessageFor(x => x.FirstName)</p>
+ <p>@Html.ValidationMessageFor(x => x.LastName)</p>
+ <p>@Html.ValidationMessageFor(x => x.PersonID)</p>
+ <p>@Html.ValidationMessageFor(x => x.Telephone)</p>
+ <p>@Html.ValidationMessageFor(x => x.Password)</p>
+<table class="form-group">
+    <tbody>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.FirstName)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.FirstName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.LastName)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.LastName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.PersonID)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.PersonID)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Telephone)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Telephone)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Password)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Password)
+            </td>
+        </tr>
+    </tbody>
+</table>
+    
+    <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+}
+
+@Html.ActionLink("Cancel", "People")

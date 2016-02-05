@@ -1,0 +1,85 @@
+﻿@model IEnumerable<VaktarSkipan.BLL.DB.Person>
+
+@{
+    ViewBag.Title = "People";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Starvsfólk", "People", "Home", new { area = "" }, new { @class = "disabled navbar-brand" })
+            @Html.ActionLink("Vaktir", "Jobs", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Leysar Vaktir", "FreeVakt", "Home", new { area = "" }, new { @class = "navbar-brand  ", })
+            @Html.ActionLink("Til Brúkarasíðuna", "UserMain", "User", new { area = "" }, new { @class = "navbar-brand  ", })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+</div>
+<h2>People</h2>
+
+
+<p>
+    @Html.ActionLink("New Person", "CreatePerson")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            <b>Shifts</b>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => item.PersonID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaktir.Count)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditPerson", new { id=item.PersonID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PersonID }) |
+            @Html.ActionLink("Delete", "DeletePerson", new { id=item.PersonID })
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.ActionLink("Home", "Index")

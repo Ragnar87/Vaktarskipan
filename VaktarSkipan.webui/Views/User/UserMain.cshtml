@@ -1,0 +1,87 @@
+﻿@model IEnumerable<VaktarSkipan.BLL.DB.Vaktir>
+
+@{
+    ViewBag.Title = "Mínar vaktir";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Mínar Vaktir", "UserMain", "User", new { area = "" }, new { @class = "disabled navbar-brand" })
+            @Html.ActionLink("Leysar vaktir", "FreeVakts", "User", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Starvsfólkalisti", "Starvsfolkalisti", "User", new { area = "" }, new { @class = "navbar-brand"})
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+</div>
+
+<h2>Mínar vaktir</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Owner
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.End)
+        </th>
+        <th>
+            Leys Vakt
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Person.FirstName  @item.Person.LastName
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td>
+                @if (item.isFree)
+                {
+                    <b>Yes</b>
+
+                }
+                else
+                {
+                    <b>No</b>
+                }
+
+            </td>
+            <td>
+                @Html.ActionLink("Bið um frí", "release", new { id = item.VaktID })
+            </td>
+        </tr>
+    }
+
+</table>

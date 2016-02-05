@@ -1,0 +1,56 @@
+﻿@model IEnumerable<VaktarSkipan.BLL.DB.Person>
+
+@{
+    ViewBag.Title = "StarvsfólkaListi";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Mínar Vaktir", "UserMain", "User", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Leysar vaktir", "FreeVakts", "User", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Starvsfólkalisti", "Starvsfolkalisti", "User", new { area = "" }, new { @class = "disabled navbar-brand  ", })
+
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav"></ul>
+        </div>
+    </div>
+</div>
+<h2>Starvsfólka Listi</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Navn
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+
+    </tr>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+                <td>
+                    @item.fullName()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+
+</table>
